@@ -1,11 +1,13 @@
+version: '3.1'
+
 services:
-  rabbitmq:
+  rabbitmq_almoxarifado:
     image: rabbitmq:management
-    container_name: rabbitmq
+    container_name: rabbitmq_almoxarifado
     restart: always
     ports:
-      - 5672:5672
-      - 15672:15672
+      - "5673:5672"    # Porta do RabbitMQ mapeada para evitar conflito com outros serviços
+      - "15673:15672"  # Porta de gerenciamento mapeada para evitar conflito com outros serviços
     environment:
-      - RABBITMQ_DEFAULT_USER=admin
-      - RABBITMQ_DEFAULT_PASS=admin
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
