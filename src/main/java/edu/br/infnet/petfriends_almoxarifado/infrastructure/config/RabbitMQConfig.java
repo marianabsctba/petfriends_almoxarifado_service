@@ -1,4 +1,5 @@
-package edu.br.infnet.petfriends_almoxarifado.config;
+package edu.br.infnet.petfriends_almoxarifado.infrastructure.config;
+
 
 import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;

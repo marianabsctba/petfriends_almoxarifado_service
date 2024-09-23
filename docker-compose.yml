@@ -6,8 +6,8 @@ services:
     container_name: rabbitmq_almoxarifado
     restart: always
     ports:
-      - "5673:5672"    # Porta do RabbitMQ mapeada para evitar conflito com outros serviços
-      - "15673:15672"  # Porta de gerenciamento mapeada para evitar conflito com outros serviços
+      - "5673:5672"
+      - "15673:15672"
     environment:
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: admin
