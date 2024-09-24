@@ -1,7 +1,9 @@
 package edu.br.infnet.petfriends_almoxarifado.interfaces.controller;
-import edu.br.infnet.petfriends_almoxarifado.application.service.EstoqueService;
+
+import edu.br.infnet.petfriends_almoxarifado.application.EstoqueService;
 import edu.br.infnet.petfriends_almoxarifado.domain.model.Estoque;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,8 +32,11 @@ public class EstoqueController {
 
     @PutMapping("/atualizar/{produtoId}")
     public ResponseEntity<Estoque> atualizarEstoque(@PathVariable Long produtoId, @RequestParam int quantidade) {
-        Estoque estoque = estoqueService.atualizarEstoque(produtoId, quantidade);
-        return ResponseEntity.ok(estoque);
+        try {
+            Estoque estoque = estoqueService.atualizarEstoque(produtoId, quantidade);
+            return ResponseEntity.ok(estoque);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // Retorna 404 se o produto não for encontrado
+        }
     }
 }
-

@@ -1,6 +1,5 @@
 package edu.br.infnet.petfriends_almoxarifado.domain.model;
 
-
 import edu.br.infnet.petfriends_almoxarifado.domain.vo.Quantidade;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,11 +7,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
 public class Estoque {
 
     @Id
@@ -25,9 +24,14 @@ public class Estoque {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
-    private String categoria;
-
     @Embedded
     private Quantidade quantidade;
+
+    public void subtrairQuantidade(int quantidade) {
+        this.quantidade.subtrair(quantidade);
+    }
+
+    public void adicionarQuantidade(int quantidade) {
+        this.quantidade.adicionar(quantidade);
+    }
 }
