@@ -25,9 +25,9 @@ public class EstoqueService {
     }
 
     public Optional<Estoque> buscarPorProdutoId(Long produtoId) {
-        ProdutoDTO produto = produtoClient.buscarProdutoPorId(produtoId);  // Valida a existência no microserviço de produto
+        ProdutoDTO produto = produtoClient.buscarProdutoPorId(produtoId);
         if (produto != null) {
-            return estoqueRepository.findByProdutoId(produtoId);  // Retorna o Optional diretamente
+            return estoqueRepository.findByProdutoId(produtoId);
         } else {
             throw new RuntimeException("Produto não encontrado no serviço de produtos");
         }

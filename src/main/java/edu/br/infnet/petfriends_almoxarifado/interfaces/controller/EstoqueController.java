@@ -36,7 +36,7 @@ public class EstoqueController {
             Estoque estoque = estoqueService.atualizarEstoque(produtoId, quantidade);
             return ResponseEntity.ok(estoque);
         } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // Retorna 404 se o produto não for encontrado
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
 }
