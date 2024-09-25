@@ -1,4 +1,4 @@
-package edu.br.infnet.petfriends_almoxarifado.infrastructure.dto;
+package edu.br.infnet.petfriends_almoxarifado.interfaces.controller.dto;
 
 import lombok.Data;
 

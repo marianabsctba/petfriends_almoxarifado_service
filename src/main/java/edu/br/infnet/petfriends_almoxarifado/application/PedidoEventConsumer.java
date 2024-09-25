@@ -1,6 +1,6 @@
 package edu.br.infnet.petfriends_almoxarifado.application;
 
-import edu.br.infnet.petfriends_almoxarifado.infrastructure.dto.PedidoEventoDto;
+import edu.br.infnet.petfriends_almoxarifado.interfaces.controller.dto.PedidoEventoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -13,6 +13,6 @@ public class PedidoEventConsumer {
 
     @RabbitListener(queues = "${broker.queue.pedido.name}")
     public void processarEventoPedido(PedidoEventoDto pedidoEvento) {
-        estoqueService.processarEstoque(pedidoEvento);
+        estoqueService.checarestoque(pedidoEvento);
     }
 }

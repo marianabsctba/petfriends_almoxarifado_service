@@ -19,8 +19,6 @@ public class Estoque {
     private Long produtoId;
     @Column(nullable = false)
     private String nome;
-    @Column(nullable = false)
-    private String categoria;
     @Embedded
     private Quantidade quantidade;
 

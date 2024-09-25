@@ -21,7 +21,7 @@ public class Quantidade {
         if (this.valor >= quantidade) {
             this.valor -= quantidade;
         } else {
-            throw new IllegalArgumentException("Quantidade insuficiente no estoque");
+            throw new IllegalArgumentException("Opsss.. não há estoque suficiente. Tente novamente mais tarde");
         }
     }
 }

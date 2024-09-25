@@ -1,7 +1,7 @@
 package edu.br.infnet.petfriends_almoxarifado.interfaces.controller;
 import edu.br.infnet.petfriends_almoxarifado.application.PedidoEstoqueService;
 import edu.br.infnet.petfriends_almoxarifado.domain.model.Estoque;
-import edu.br.infnet.petfriends_almoxarifado.infrastructure.dto.EstoqueDto;
+import edu.br.infnet.petfriends_almoxarifado.interfaces.controller.dto.EstoqueDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

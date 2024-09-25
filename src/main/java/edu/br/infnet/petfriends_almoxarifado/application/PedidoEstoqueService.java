@@ -1,8 +1,8 @@
 package edu.br.infnet.petfriends_almoxarifado.application;
 
 import edu.br.infnet.petfriends_almoxarifado.domain.model.Estoque;
-import edu.br.infnet.petfriends_almoxarifado.infrastructure.dto.EstoqueDto;
-import edu.br.infnet.petfriends_almoxarifado.infrastructure.dto.PedidoEventoDto;
+import edu.br.infnet.petfriends_almoxarifado.interfaces.controller.dto.EstoqueDto;
+import edu.br.infnet.petfriends_almoxarifado.interfaces.controller.dto.PedidoEventoDto;
 import edu.br.infnet.petfriends_almoxarifado.infrastructure.repository.EstoqueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ public class PedidoEstoqueService {
     @Autowired
     private EstoqueRepository estoqueRepository;
 
-    public void processarEstoque(PedidoEventoDto estoque) {
+    public void checarestoque(PedidoEventoDto estoque) {
         Estoque estoqueProduto = estoqueRepository.findByProdutoId(estoque.getProdutoId());
 
         if (estoqueProduto == null) {
@@ -42,7 +42,6 @@ public class PedidoEstoqueService {
         newEstoque.setProdutoId(estoque.getProdutoId());
         newEstoque.getQuantidade().adicionar(estoque.getQuantidade());
         newEstoque.setNome(estoque.getNome());
-        newEstoque.setCategoria(estoque.getCategoria());
 
         return estoqueRepository.save(newEstoque);
     }
