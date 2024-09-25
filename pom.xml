@@ -19,22 +19,8 @@
     <description>PetFriends_Almoxarifado Service</description>
 
     <properties>
-        <java.version>21</java.version> <!-- Java 21 compatível com Spring Boot 3.1.4 -->
-        <spring-cloud.version>2022.0.3</spring-cloud.version> <!-- Versão do Spring Cloud compatível -->
+        <java.version>21</java.version>
     </properties>
-
-    <!-- Gerenciamento de dependências do Spring Cloud -->
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
         <!-- Dependências do Spring Boot -->
@@ -43,18 +29,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-
-        <!-- Integração com RabbitMQ -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
-
-        <!-- Banco de dados H2 para testes/desenvolvimento -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -68,11 +42,23 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Spring Boot Starter Test para testes unitários -->
+        <!-- Starter para testes unitários do Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <!-- Spring Data JPA -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- Spring Boot Starter para AMQP (RabbitMQ) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
 
         <!-- RabbitMQ para testes -->
@@ -82,28 +68,15 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Eureka Client para registro no Eureka Server -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-
-        <!-- Swagger/OpenAPI para documentação da API -->
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.6.14</version>
-        </dependency>
-
-        <!-- Axon Framework para Event Sourcing -->
+        <!-- Dependências do Axon Framework -->
         <dependency>
             <groupId>org.axonframework</groupId>
-            <artifactId>axon-eventsourcing</artifactId>
+            <artifactId>axon-spring-boot-starter</artifactId>
             <version>4.10.0</version>
         </dependency>
         <dependency>
             <groupId>org.axonframework</groupId>
-            <artifactId>axon-spring-boot-starter</artifactId>
+            <artifactId>axon-eventsourcing</artifactId>
             <version>4.10.0</version>
         </dependency>
 

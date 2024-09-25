@@ -1,7 +1,7 @@
 package edu.br.infnet.petfriends_almoxarifado.interfaces.controller;
-
-import edu.br.infnet.petfriends_almoxarifado.application.EstoqueService;
+import edu.br.infnet.petfriends_almoxarifado.application.PedidoEstoqueService;
 import edu.br.infnet.petfriends_almoxarifado.domain.model.Estoque;
+import edu.br.infnet.petfriends_almoxarifado.infrastructure.dto.EstoqueDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,32 +11,35 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/estoques")
+@RequestMapping("/api/estoque")
 public class EstoqueController {
 
     @Autowired
-    private EstoqueService estoqueService;
+    private PedidoEstoqueService estoqueService;
+
 
     @GetMapping
     public ResponseEntity<List<Estoque>> listarTodos() {
-        List<Estoque> estoques = estoqueService.listarTodos();
-        return ResponseEntity.ok(estoques);
+        List<Estoque> estoque = estoqueService.listarTodos();
+        return ResponseEntity.ok(estoque);
     }
 
-    @GetMapping("/produto/{produtoId}")
-    public ResponseEntity<Estoque> buscarPorProdutoId(@PathVariable Long produtoId) {
-        Optional<Estoque> estoque = estoqueService.buscarPorProdutoId(produtoId);
-        return estoque.map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    @GetMapping("/produto/{id}")
+    public ResponseEntity<Estoque> buscarPorId(@PathVariable Long id) {
+        Optional<Estoque> produto = estoqueService.buscarPorProdutoId(id);
+        return produto.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    @PutMapping("/atualizar/{produtoId}")
-    public ResponseEntity<Estoque> atualizarEstoque(@PathVariable Long produtoId, @RequestParam int quantidade) {
-        try {
-            Estoque estoque = estoqueService.atualizarEstoque(produtoId, quantidade);
-            return ResponseEntity.ok(estoque);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
+    @PostMapping
+    public ResponseEntity<Estoque> criarProduto(@RequestBody EstoqueDto request) {
+        Estoque produto = estoqueService.criarEstoque(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(produto);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluirProduto(@PathVariable Long id) {
+        estoqueService.excluirProduto(id);
+        return ResponseEntity.noContent().build();
     }
 }
